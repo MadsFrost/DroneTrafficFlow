@@ -55,10 +55,27 @@ type Drone (startpos:vec, dest:vec, speed:float, UUID:string) =
 type Airspace () = 
     let mutable drones : Drone list = []
 
-    member this.droneDist = 
+    member this.droneDist d1 d2 = 
+        let pos1 = d1.position
+        let pos2 = d2.position
+        (vectorLength(pos1 +- pos2))
+            
     member this.flyDrones = 
-    member this.addDrone = 
-    member this.willCollide = 
+        for i in[0..(drones.Length - 1)] do
+            drones.[i].Fly()
+
+    member this.addDrone drone = 
+        drones <- drones @ drone
+
+    member this.willCollide =
+        let mutable collidedDrone : (Drone*Drone) list = []
+
+        for i in [0..(drones.Length - 1)] do
+            for j in [i+1..(drones.Length - 1)] do
+                if(this.droneDist i j <= 5) then
+                    collidedDrone <- collidedDrone @ (i, j) 
+                else
+
 
 let drone1 = new Drone((upwards +@ 15.), (origin), 16., "Queen-sized bed")
 drone1.Fly()
