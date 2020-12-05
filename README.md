@@ -15,7 +15,7 @@ which we later utilize for vector calculations.
 We thereafter define different operators for vector calculations: ```+@``` for scaling vectors with a float, ```+|``` for addition of two vectors and lastly ```+-``` for subtraction of two vectors.
 
 We also write two functions to calculate the vectorLength with the use of pythagoras, including normalizing the vector with the appropriate length calculated. This is to ensure that it travels with the appropriate speed given in the Drone property speed.
-## Drone Class
+## 🛩 Drone Class
 The Drone's constructor is built with the properties: 
 1. vector: startpos
 2. vector: dest
