@@ -1,5 +1,5 @@
 ![DroneTrafficFlow](/DRONE.png)
-# Simulating Drones
+# 🗜 Simulating Drones
 The Library makes use of vector calculations to simulate drone traffic flow in an airspace. The simulation is coded in F# and makes use of no external libraries.
 [Download Fsharp](https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/install-fsharp
 )
