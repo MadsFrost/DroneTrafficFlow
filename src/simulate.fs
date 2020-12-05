@@ -1,4 +1,4 @@
-module AttackerDrones
+module SimulatingDrones
 
 type vec = float*float
 
@@ -26,10 +26,6 @@ let vectorLength (A:vec) : float =
 let normVector (A:vec) : vec =
     let length = vectorLength A 
     (fst A / length, snd A / length)
-
-let testVector : vec = (0.,1.)
-
-
 
 type Drone (startpos:vec, dest:vec, speed:float, UUID:string) = 
     let mutable position = (startpos)
@@ -74,42 +70,42 @@ type Drone (startpos:vec, dest:vec, speed:float, UUID:string) =
 type Airspace () = 
     let mutable drones : Drone list = []
 
-    ///<summary>Prints a float from a list, based on contiued fractions</summary>
-    ///<param name="a">The float as input parameter</param>
-    ///<returns>An integer list from using the continued fractions</returns>
-    member this.droneDist (d1: Drone) (d2 : Drone) = 
+    ///<summary>Gets the distance between two drone positions</summary>
+    ///<param name="d1 d2">The drones to check the distance between</param>
+    ///<returns>Returns the dist between </returns>
+    member this.droneDist (d1: Drone) (d2: Drone) = 
         let pos1 = d1.getPosition()
         let pos2 = d2.getPosition()
         (vectorLength(pos1 +- pos2))
 
-    ///<summary>Prints a float from a list, based on contiued fractions</summary>
-    ///<param name="a">The float as input parameter</param>
-    ///<returns>An integer list from using the continued fractions</returns>
+    ///<summary>Gets the list of drones in the Airspace</summary>
+    ///<param name="()">Unit for the running the method</param>
+    ///<returns>Returns the list of drones</returns>
     member this.getDrones() = drones
 
-    ///<summary>Prints a float from a list, based on contiued fractions</summary>
-    ///<param name="a">The float as input parameter</param>
-    ///<returns>An integer list from using the continued fractions</returns>
+    ///<summary>Loops through the drone list and calls the fly method on each individual drone</summary>
+    ///<param name="()">Unit for running the method</param>
+    ///<returns>Gives the drones a new position based on the individual speed and calculations</returns>
     member this.flyDrones () = 
         for i in[0..(drones.Length - 1)] do
             drones.[i].Fly()
 
-    ///<summary>Prints a float from a list, based on contiued fractions</summary>
-    ///<param name="a">The float as input parameter</param>
-    ///<returns>An integer list from using the continued fractions</returns>
+    ///<summary>Adds the individual drone to the drones list</summary>
+    ///<param name="drone">The float as input parameter</param>
+    ///<returns>a drone included in a drones list</returns>
     member this.addDrone drone = 
         drones <- drones @ [drone]
 
-    ///<summary>Prints a float from a list, based on contiued fractions</summary>
-    ///<param name="a">The float as input parameter</param>
-    ///<returns>An integer list from using the continued fractions</returns>
+    ///<summary>Adds each individual drone from the input list</summary>
+    ///<param name="list">A list of Drones</param>
+    ///<returns>The function addDrone of the indexed drone in the loop</returns>
     member this.addDrones (list: Drone list) = 
         for i in [0..(list.Length - 1)] do
             this.addDrone (list.[i])
 
-    ///<summary>Prints a float from a list, based on contiued fractions</summary>
-    ///<param name="a">The float as input parameter</param>
-    ///<returns>An integer list from using the continued fractions</returns>
+    ///<summary>Checks distance between each individual drone, and collides if with-in distance</summary>
+    ///<param name="loop">The time interval that determents the meters the drones should fly</param>
+    ///<returns>An empty drone list or a drone list with the collided drones</returns>
     member this.willCollide (loop: int) : (Drone*Drone) list =
         let mutable collidedDrone : (Drone*Drone) list = []
         for x in 0..loop - 1 do

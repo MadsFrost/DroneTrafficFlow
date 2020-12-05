@@ -1,4 +1,4 @@
-open AttackerDrones
+open SimulatingDrones
 
 printfn "=============================================\nWhitebox testing of Drone Class Methods \n============================================="
 printfn "\n======================================\n Testing of method isFinished \n======================================\n"
