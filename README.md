@@ -1,5 +1,5 @@
 ![DroneTrafficFlow](/DRONE.png)
-# 🗜 Simulating Drones
+# 🗜 Simulating Drones Delievery
 The Library makes use of vector calculations to simulate drone traffic flow in an airspace. The simulation is coded in F# and makes use of no external libraries.
 [Download Fsharp](https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/install-fsharp
 )
@@ -15,7 +15,7 @@ which we later utilize for vector calculations.
 We thereafter define different operators for vector calculations: ```+@``` for scaling vectors with a float, ```+|``` for addition of two vectors and lastly ```+-``` for subtraction of two vectors.
 
 We also write two functions to calculate the vectorLength with the use of pythagoras, including normalizing the vector with the appropriate length calculated. This is to ensure that it travels with the appropriate speed given in the Drone property speed.
-## 🛩 Drone Class
+## ✈️ Drone Class
 The Drone's constructor is built with the properties: 
 1. vector: startpos
 2. vector: dest
@@ -60,7 +60,7 @@ To make the Drone fly, in our example, a speed of 1 m/s, we write:
 ```packageOne.Fly()```
 
 which changes the position of our Drone to the new position.
-## Airspace Class
+## 🌏 Airspace Class
 The Airspace contains the a variety of methods to interact with a multitude of Drones simultaneously.
 
 Let's build a new Airspace, do it in the same file (example.fsx):
